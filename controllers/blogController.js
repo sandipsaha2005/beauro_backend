@@ -140,3 +140,11 @@ export const getOneBlog = async (req, res, next) => {
 
 
 }
+
+export const getQa = async (req,res,next) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}

@@ -40,20 +40,22 @@ export const createInquiry = catchAsyncError(async (req, res, next) => {
         if (!name || !phone || !email) {
             return next(new ErrorHandler("Please provide all details.", 400));
         }
+        
         const data = await Inq.create({
             name,
             email,
             phone
         })
-        await Inq.save();
+        
         res.status(200).json({
             success: true,
-            message: "Query sent successfully",
+            message: "Inquiry sent successfully",
             data
         })
 
     } catch (error) {
-
+        console.log(error);
+        
     }
 })
 
