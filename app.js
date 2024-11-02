@@ -17,7 +17,7 @@ dotenv.config({ path: './config/config.env' });
 
 app.use(cors({
     origin: function (origin, callback) {
-        const allowedOrigins = ['http://localhost:3031', `${process.env.FRONTEND_URL}`, 'http://localhost:4173','http://localhost:3040'];
+        const allowedOrigins = ['http://localhost:3031', `${process.env.FRONTEND_URL}`, 'http://localhost:4173','http://localhost:3040','http://localhost:3032'];
 
         // Allow any origin that matches a dev tunnel URL pattern or is in the allowed list
         if (!origin || allowedOrigins.includes(origin) || origin.includes('.devtunnels.ms')) {
@@ -25,7 +25,7 @@ app.use(cors({
         } else {
             callback(new Error('Not allowed by CORS'));
         }
-    }, // The URL of your React app
+    }, 
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true, // Allow credentials
 }));
@@ -34,10 +34,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
+
 app.use('/user', userRouter);
 app.use('/blog', blogRouter);
 app.use('/query',queryRouter);
 app.use('/admin',adminRouter);
+
 dbConnection();
 
 app.use(errorMiddleware);

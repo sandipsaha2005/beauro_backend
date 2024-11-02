@@ -125,7 +125,7 @@ export const getAllBlog = async (req, res, next) => {
 
 export const getOneBlog = async (req, res, next) => {
   try {
-    const {id} = req.body;
+    const { id } = req.body;
     const blog= await Blog.findOne({_id:id});
 
     res.status(200).json({
