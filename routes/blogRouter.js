@@ -1,5 +1,5 @@
 import express from 'express'
-import {createBlog,updateBlog,getAllBlog, getOneBlog} from '../controllers/blogController.js'
+import {createBlog,updateBlog,getAllBlog, getOneBlog, getQa} from '../controllers/blogController.js'
 import { isAdmin, isAuthorized } from '../middlewares/auth.js'
 const router = express.Router()
 
@@ -9,5 +9,6 @@ router.get('/get-blogs', getAllBlog);
 router.get('/get-blogs-admin', isAdmin, getAllBlog);
 router.post('/get-one-blog', getOneBlog);
 router.post('/get-one-blog-admin', isAdmin, getOneBlog);
+router.post('/get-qa',getQa);
 
 export default router;

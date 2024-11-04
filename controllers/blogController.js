@@ -141,10 +141,16 @@ export const getOneBlog = async (req, res, next) => {
 
 }
 
-export const getQa = async (req,res,next) => {
+export const getQa = async (req, res, next) => {
   try {
+    const { blogId } = req.body;
     
+    const getQas = await QA.find({ blogId }); // Add await to resolve the Promise
+    console.log(getQas);
+    
+    res.status(200).json(getQas); // Send the result as a response, if needed
   } catch (error) {
-    
+    console.log(error);
+    res.status(500).json({ message: "An error occurred", error });
   }
-}
+};

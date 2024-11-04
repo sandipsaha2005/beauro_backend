@@ -24,7 +24,7 @@ app.use(
         `${process.env.FRONTEND_URL}`,
         "http://localhost:4173",
         "http://localhost:3040",
-        "http://localhost:3032",
+        '*',
       ];
 
       // Allow any origin that matches a dev tunnel URL pattern or is in the allowed list

@@ -61,21 +61,31 @@ export const me = catchAsyncError(async (req, res, next) => {
 export const register = catchAsyncError(async (req, res, next) => {
 
     try {
-        const { username, password, email, phone } = req.body;
-        if (!username || !password || !email || !phone) {
+        console.log("firls");
+        
+        const { firstName, password, email, phone , lastName} = req.body;
+        if (!lastName || !firstName || !password || !email || !phone) {
             return next(new ErrorHandler("Please provid requried details", 400));
         }
         const userDetails = await User.create({
-            username,
+            username:`${firstName} ${lastName}`,
             password,
             email,
             phone
         });
+        // console.log("hi");
+        const options = {
+            expiresIn: process.env.TOKEN_EXPIRE // Token will expire in 1 hour
+        };
+
+        const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, options);
+
+        
         await userDetails.save();
         res.status(200).json({
             success: true,
             message: 'User Created Successfully.',
-            userDetails
+            accessToken: token,
         })
     } catch (error) {
         console.log(error);
