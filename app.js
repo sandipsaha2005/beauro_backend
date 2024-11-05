@@ -25,7 +25,10 @@ app.use(
         `${process.env.FRONTEND_URL_ADMIN}`,
         `${process.env.FRONTEND_URL_LOCAL}`,
         `${process.env.FRONTEND_URL_ADMIN_LOCAL}`,
-       
+        `http://localhost:7010`,
+        `https://admin.bureauglobalcertification.com`,
+        `https://www.bureauglobalcertification.com`,
+        `http://localhost:7011`,
         '*',
         
       ];
