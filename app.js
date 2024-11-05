@@ -20,11 +20,13 @@ app.use(
   cors({
     origin: function (origin, callback) {
       const allowedOrigins = [
-        "http://localhost:3031",
+        
         `${process.env.FRONTEND_URL}`,
-        "http://localhost:4173",
-        "http://localhost:3040",
-        '*',
+        `${process.env.FRONTEND_URL_ADMIN}`,
+        `${process.env.FRONTEND_URL_LOCAL}`,
+        `${process.env.FRONTEND_URL_ADMIN_LOCAL}`,
+       
+      
       ];
 
       // Allow any origin that matches a dev tunnel URL pattern or is in the allowed list
