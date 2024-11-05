@@ -26,7 +26,7 @@ app.use(
         `${process.env.FRONTEND_URL_LOCAL}`,
         `${process.env.FRONTEND_URL_ADMIN_LOCAL}`,
        
-      
+        '*',
       ];
 
       // Allow any origin that matches a dev tunnel URL pattern or is in the allowed list
