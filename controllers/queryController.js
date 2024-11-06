@@ -34,6 +34,32 @@ export const getAllQuery = catchAsyncError(async (req, res, next) => {
     }
 })
 
+export const deletQuery = catchAsyncError(async(req,res,next)=>{
+    try {
+        const {_id}=req.body;
+        if(!_id){
+            return next(new ErrorHandler("Please provide Id",400));
+        }
+        console.log(_id);
+        
+        const query = await Query.findByIdAndDelete(_id);
+        console.log(query);
+        
+        if(!query){
+            return next(new ErrorHandler("Query not found",400));
+        }
+
+        res.status(200).json({
+            success:true,
+            message:'Inquiery deleted successfully',
+            data:query
+        })
+    } catch (error) {
+        console.log(error);
+        
+    }
+})
+
 export const createInquiry = catchAsyncError(async (req, res, next) => {
     try {
         const { name, phone, email } = req.body;
@@ -69,5 +95,31 @@ export const getAllInquiry= catchAsyncError(async(req,res,next)=>{
         })
     } catch (error) {
         console.log(error);
+    }
+})
+
+export const deleteInquiry = catchAsyncError(async(req,res,next)=>{
+    try {
+        const {_id}=req.body;
+
+        if(!_id){
+            return next(new ErrorHandler("Please provide Id",400));
+        }
+
+        const inquiry = await Inq.findByIdAndDelete(_id);
+
+        if(!inquiry){
+            return next(new ErrorHandler("Inquiry not found",400));
+        }
+
+        res.status(200).json({
+            success:true,
+            message:'Inquiery deleted successfully',
+            data:inquiry
+        })
+    } catch (error) {
+        console.log(error);
+        
+        
     }
 })
