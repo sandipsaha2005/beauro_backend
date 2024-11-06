@@ -2,12 +2,12 @@ import { Blog } from "../models/blogSchema.js";
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import { QA } from "../models/qa.js";
+import ErrorHandler from "../middlewares/error.js";
 
 export const createBlog = async (req, res, next) => {
   try {
     const { title, description, author, content, tags, qa, metaKeywords, metaDescription, metaTitle } = req.body;
-    // console.log(req.body);
-    // console.log(req.files);
+
 
     if (!req.files || !req.files.file) {
       return res.status(400).json({ message: 'Heading image and image are required.' });
@@ -126,16 +126,16 @@ export const getAllBlog = async (req, res, next) => {
 export const getOneBlog = async (req, res, next) => {
   try {
     const { id } = req.body;
-    const blog= await Blog.findOne({_id:id});
+    const blog = await Blog.findOne({ _id: id });
 
     res.status(200).json({
-      message:'Blog fetched Successfully',
-      blog:blog,
-      success:true
+      message: 'Blog fetched Successfully',
+      blog: blog,
+      success: true
     })
   } catch (error) {
     console.log(error);
-    
+
   }
 
 
@@ -144,10 +144,7 @@ export const getOneBlog = async (req, res, next) => {
 export const getQa = async (req, res, next) => {
   try {
     const { blogId } = req.body;
-    
     const getQas = await QA.find({ blogId }); // Add await to resolve the Promise
-    console.log(getQas);
-    
     res.status(200).json(getQas); // Send the result as a response, if needed
   } catch (error) {
     console.log(error);
@@ -155,3 +152,35 @@ export const getQa = async (req, res, next) => {
   }
 };
 
+
+export const deleteBlog = async (req, res, next) => {
+  try {
+    const { _id } = req.body;
+
+    if (!_id) {
+      return next(new ErrorHandler("Please provide required details"));
+    }
+
+    // Delete the blog by ID
+    const blog = await Blog.findByIdAndDelete(_id);
+
+    if (!blog) {
+      return next(new ErrorHandler("Blog not found"));
+    }
+
+    // Delete associated QA by blogId
+    const qas = await QA.findOneAndDelete({ blogId: _id });
+
+    if (!qas) {
+      return next(new ErrorHandler("Associated QA not found"));
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Blog and associated QA deleted successfully",
+      data: blog
+    });
+  } catch (error) {
+    next(error); // Pass the error to the global error handler
+  }
+};
