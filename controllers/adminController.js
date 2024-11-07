@@ -66,6 +66,12 @@ export const register = catchAsyncError(async (req, res, next) => {
         if (!adminName || !password || !email || !phone) {
             return next(new ErrorHandler("Please provid requried details", 400));
         }
+        const alreadyPresentAdmin= await Admin.findOne({email:email});
+        
+        if(alreadyPresentAdmin){
+            return next(new ErrorHandler("Admin already exists",400));
+        }
+
         const AdminDetails = await Admin.create({
             adminName,
             password,
