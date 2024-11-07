@@ -40,10 +40,10 @@ export const deletQuery = catchAsyncError(async(req,res,next)=>{
         if(!_id){
             return next(new ErrorHandler("Please provide Id",400));
         }
-        console.log(_id);
+        
         
         const query = await Query.findByIdAndDelete(_id);
-        console.log(query);
+       
         
         if(!query){
             return next(new ErrorHandler("Query not found",400));

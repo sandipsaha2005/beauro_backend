@@ -63,7 +63,7 @@ export const register = catchAsyncError(async (req, res, next) => {
             return next(new ErrorHandler("Please provid requried details", 400));
         }
         const alreadyPresentUser=await User.findOne({email:email});
-        console.log(alreadyPresentUser);
+  
         
         if(alreadyPresentUser){
             return next(new ErrorHandler("User already present",400))

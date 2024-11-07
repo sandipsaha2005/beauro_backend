@@ -11,10 +11,8 @@ export const login = catchAsyncError(async (req, res, next) => {
     if (!email || !password) {
         return next(new ErrorHandler("Please provid requried details", 400));
     }
-    console.log(email + '' + password);
 
     const AdminUser = await Admin.findOne({ email }).select("+password");
-    console.log(AdminUser);
 
 
     if (!AdminUser) {
@@ -42,8 +40,7 @@ export const login = catchAsyncError(async (req, res, next) => {
 export const me = catchAsyncError(async (req, res, next) => {
     try {
         const obj = req.user
-        // const obj = req.user
-        console.log(obj.email);
+ 
         const user = await Admin.findOne({ email: obj.email });
         res.status(200).json({
             user: {
