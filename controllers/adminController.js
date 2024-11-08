@@ -3,6 +3,7 @@ import ErrorHandler from '../middlewares/error.js'
 
 import { Admin } from '../models/adminSchema.js'
 import jwt, { decode } from 'jsonwebtoken'
+import { User } from '../models/userSchema.js'
 
 
 
@@ -86,6 +87,26 @@ export const register = catchAsyncError(async (req, res, next) => {
     }
 })
 
+
+export const dashboardData= catchAsyncError(async (req,res,next) => {
+    try {
+        const userCount= await User.countDocuments({});
+        console.log(userCount);
+        let data={
+            totalActivUser:userCount
+        }
+
+        res.status(200).json({
+            message:'Data Sent',
+            success:true,
+            data
+        })
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+})
 
 
 

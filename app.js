@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter.js";
 import blogRouter from "./routes/blogRouter.js";
 import queryRouter from "./routes/queryRouter.js";
 import adminRouter from "./routes/adminRouter.js";
+import logoRouter from './routes/logoRouter.js'
 import applicationRouter from "./routes/applicationRouter.js";
 import { dbConnection } from "./database/dbConnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
@@ -61,6 +62,7 @@ app.use("/blog", blogRouter);
 app.use("/query", queryRouter);
 app.use("/admin", adminRouter);
 app.use("/application", applicationRouter);
+app.use("/logo", logoRouter);
 
 dbConnection();
 

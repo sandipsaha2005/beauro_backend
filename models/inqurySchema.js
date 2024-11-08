@@ -12,7 +12,15 @@ const inQuirySchema = new mongoose.Schema({
   email:{
     type:String,
     required:true
-  }
+  },
+  companyAddress:{
+    type:String,
+    required:true
+  },
+  companyName:{
+    type:String,
+    required:true
+  },
   
 })
 

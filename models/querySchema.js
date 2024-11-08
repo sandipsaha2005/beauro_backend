@@ -16,8 +16,19 @@ const querySchema = new mongoose.Schema({
   email:{
     type:String,
     required:true
+  },
+  where:{
+    type:String,
+    required:true
+  },
+  companyName:{
+    type:String,
+    requried:true,
+  },
+  companyAddress:{
+    type:String,
+    requried:true,
   }
-  
 })
 
 
