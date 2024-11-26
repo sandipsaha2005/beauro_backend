@@ -117,10 +117,7 @@ export const getAllBlog = async (req, res, next) => {
     })
   } catch (error) {
     console.log(error);
-
   }
-
-
 }
 
 export const getOneBlog = async (req, res, next) => {
@@ -135,10 +132,7 @@ export const getOneBlog = async (req, res, next) => {
     })
   } catch (error) {
     console.log(error);
-
   }
-
-
 }
 
 export const getQa = async (req, res, next) => {
