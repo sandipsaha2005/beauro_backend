@@ -22,9 +22,9 @@ app.use(
     origin: function (origin, callback) {
       const allowedOrigins = [
         
-        // `${process.env.FRONTEND_URL}`,
-        // `${process.env.FRONTEND_URL_ADMIN}`,
-        // `${process.env.FRONTEND_URL_LOCAL}`,
+        process.env.FRONTEND_URL,
+        // process.env.FRONTEND_URL_ADMIN,
+        // process.env.FRONTEND_URL_LOCAL,
         // `${process.env.FRONTEND_URL_ADMIN_LOCAL}`,
         // `http://localhost:7010`,
         // `https://admin.bureauglobalcertification.com`, // https://www.bureauglobalcertification.com
@@ -33,7 +33,7 @@ app.use(
         // `bureauglobalcertification.com`,
 
         // '*',
-        'https://www.bureauglobalcertification.com'
+        // 'https://www.bureauglobalcertification.com'
         
       ];
 
