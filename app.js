@@ -19,39 +19,39 @@ dotenv.config({ path: "./config/config.env" });
 
 app.use(
   cors(
-    {
-      origin: function (origin, callback) {
-        const allowedOrigins = [
+    // {
+    //   origin: function (origin, callback) {
+    //     const allowedOrigins = [
 
-          process.env.FRONTEND_URL,
-          process.env.FRONTEND_URL_ADMIN,
-          process.env.FRONTEND_URL_LOCAL,
-          process.env.FRONTEND_URL_ADMIN_LOCAL,
-          `http://localhost:7010`,
-          `https://admin.bureauglobalcertification.com`, 
-          `https://bureauglobalcertification.com`,
-          `http://localhost:7011`,
-          `bureauglobalcertification.com`,
+    //       process.env.FRONTEND_URL,
+    //       process.env.FRONTEND_URL_ADMIN,
+    //       process.env.FRONTEND_URL_LOCAL,
+    //       process.env.FRONTEND_URL_ADMIN_LOCAL,
+    //       `http://localhost:7010`,
+    //       `https://admin.bureauglobalcertification.com`, 
+    //       `https://bureauglobalcertification.com`,
+    //       `http://localhost:7011`,
+    //       `bureauglobalcertification.com`,
 
-          '*',
-          'https://www.bureauglobalcertification.com'
+    //       '*',
+    //       'https://www.bureauglobalcertification.com'
 
-        ];
+    //     ];
 
-        // Allow any origin that matches a dev tunnel URL pattern or is in the allowed list
-        if (
-          !origin ||
-          allowedOrigins.includes(origin) ||
-          origin.includes(".devtunnels.ms")
-        ) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      methods: ["GET", "POST", "DELETE", "PUT"],
-      credentials: true, // Allow credentials
-    }
+    //     // Allow any origin that matches a dev tunnel URL pattern or is in the allowed list
+    //     if (
+    //       !origin ||
+    //       allowedOrigins.includes(origin) ||
+    //       origin.includes(".devtunnels.ms")
+    //     ) {
+    //       callback(null, true);
+    //     } else {
+    //       callback(new Error("Not allowed by CORS"));
+    //     }
+    //   },
+    //   methods: ["GET", "POST", "DELETE", "PUT"],
+    //   credentials: true, // Allow credentials
+    // }
   )
 
 );
