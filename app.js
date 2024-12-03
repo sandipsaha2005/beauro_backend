@@ -17,12 +17,28 @@ import path from "path";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type,Authorization"
+  );
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
+
+
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
+app.use(cors());
 
 app.use("/user", userRouter);
 app.use("/blog", blogRouter);
@@ -30,6 +46,7 @@ app.use("/query", queryRouter);
 app.use("/admin", adminRouter);
 app.use("/application", applicationRouter);
 app.use("/logo", logoRouter);
+
 
 dbConnection();
 
