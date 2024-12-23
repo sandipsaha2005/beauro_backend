@@ -41,6 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(cors());
 
+
+
 app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 app.use("/query", queryRouter);
@@ -48,6 +50,9 @@ app.use("/admin", adminRouter);
 app.use("/application", applicationRouter);
 app.use("/logo", logoRouter);
 
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Welocome to Beauro Global Certification" });
+});
 
 dbConnection();
 
